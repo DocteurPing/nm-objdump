@@ -5,7 +5,8 @@
 ## makefile
 ##
 
-SRCNM	=	src/nm/main.c
+SRCNM	=	src/nm/main.c	\
+		src/nm/nm.c
 
 SRCOBJ	=	src/objdump/main.c
 
@@ -13,16 +14,18 @@ OBJNM	=	$(SRCNM:.c=.o)
 
 OBJOBJ	=	$(SRCOBJ:.c=.o)
 
+CFLAGS  =	-W -Wall -Wextra -Iinclude
+
 NAMENM	=	my_nm
 
 NAMEOBJ	=	my_objdump
 
 
 nm:	$(OBJNM)
-	gcc -W -Wall -Wextra $(OBJNM) -o $(NAMENM)
+	gcc $(CFLAGS) $(OBJNM) -o $(NAMENM)
 
 obj:	$(OBJOBJ)
-	gcc -W -Wall -Wextra $(OBJOBJ) -o $(NAMEOBJ)
+	gcc $(CFLAGS) $(OBJOBJ) -o $(NAMEOBJ)
 
 all:	nm obj
 
