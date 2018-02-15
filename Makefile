@@ -8,7 +8,8 @@
 SRCNM	=	src/nm/main.c	\
 		src/nm/nm.c
 
-SRCOBJ	=	src/objdump/main.c
+SRCOBJ	=	src/objdump/main.c	\
+		src/objdump/objdump.c
 
 OBJNM	=	$(SRCNM:.c=.o)
 
