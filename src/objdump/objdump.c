@@ -81,7 +81,10 @@ int my_objdump(char *filename)
 	elf = (Elf64_Ehdr *) file;
 	shdr = (Elf64_Shdr *) (file + elf->e_shoff);
 	strtab = (char *)(file + shdr[elf->e_shstrndx].sh_offset);
-	printf("flags: 0x%x\n", elf->e_flags);
+	printf("\n%s:     file format %s\n", filename, "elf64-x86-64");
+	printf("architecture: %s, flags 0x%08x:\n", "test",
+	elf->e_flags);
+	printf("start address 0x%016lx\n\n", elf->e_entry);
 	print_section(shdr, strtab, elf, file);
 	return (0);
 }
