@@ -1,5 +1,9 @@
 {
     "editor.rulers": [80],
     "editor.tabSize": 8,
-    "editor.insertSpaces": false
+    "editor.insertSpaces": false,
+    "files.associations": {
+        "array": "c",
+        "string_view": "c"
+    }
 }

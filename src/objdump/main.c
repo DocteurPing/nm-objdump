@@ -12,7 +12,7 @@ int	main(int argc, char **argv) {
 
 	if (argc <= 1)
 		return (my_objdump("a.out"));
-	for (i = 0; i < argc; i++) {
+	for (i = 1; i < argc; i++) {
 		my_objdump(argv[i]);
 	}
 	return (0);

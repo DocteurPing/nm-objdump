@@ -7,24 +7,48 @@
 
 #include "objdump/objdump.h"
 
-void    print_section(Elf64_Shdr *shdr, char *strTab, int shNum, uint8_t *data)
+void		print_all(uint8_t *data, int size)
 {
-	int   i;  
+	int	i = 0;
 
-	for(i = 0; i < shNum && 
+	for (; i < 16; i++)
+	{
+		if (i < size)
+			printf("%02x", data[i]);
+		else
+			printf("  ");
+		if (!((i + 1) % 4))
+			printf(" ");
+	}
+	printf(" ");
+	for (i = 0; i < 16; i++)
+	{
+		if (i < size)
+			printf("%c", isprint(data[i]) ? data[i] : '.');
+		else
+			printf(" ");
+	}
+	printf("\n");
+}
+
+void    print_section(Elf64_Shdr *shdr, char *strTab, Elf64_Ehdr *elf,
+		uint8_t *data)
+{
+	int   i;
+	size_t k;
+
+	for (i = 1; i < elf->e_shnum &&
 		(strcmp(&strTab[shdr[i].sh_name], ".symtab") != 0); i++) {
-		size_t k;
+		if (strcmp(&strTab[shdr[i].sh_name], ".bss") == 0)
+			continue;
 		printf("Contents of section %s:\n", &strTab[shdr[i].sh_name]);
-		for (k = shdr[i].sh_offset; 
-			k < shdr[i].sh_offset + shdr[i].sh_size; k++) {
-			printf("%04x", data[k]);
-		}   
-		printf(" ");
-		for (k = shdr[i].sh_offset; 
-			k < shdr[i].sh_offset + shdr[i].sh_size; k++) {
-			printf("%c", isprint(data[k]) ? data[k] : '.');
-		}   
-		printf("\n");
+		for (k = shdr[i].sh_offset;
+			k < shdr[i].sh_offset + shdr[i].sh_size; k += 16) {
+			printf(" %04x ",
+			(int)(shdr[i].sh_addr + k - shdr[i].sh_offset));
+			print_all(data + k,
+				shdr[i].sh_offset + shdr[i].sh_size - k);
+		}
 	}
 }
 
@@ -58,6 +82,6 @@ int my_objdump(char *filename)
 	shdr = (Elf64_Shdr *) (file + elf->e_shoff);
 	strtab = (char *)(file + shdr[elf->e_shstrndx].sh_offset);
 	printf("flags: 0x%x\n", elf->e_flags);
-	print_section(shdr, strtab, elf->e_shnum, file);
+	print_section(shdr, strtab, elf, file);
 	return (0);
 }
