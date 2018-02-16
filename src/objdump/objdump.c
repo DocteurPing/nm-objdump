@@ -39,7 +39,8 @@ void    print_section(Elf64_Shdr *shdr, char *strTab, Elf64_Ehdr *elf,
 
 	for (i = 1; i < elf->e_shnum &&
 		(strcmp(&strTab[shdr[i].sh_name], ".symtab") != 0); i++) {
-		if (strcmp(&strTab[shdr[i].sh_name], ".bss") == 0)
+		if (strcmp(&strTab[shdr[i].sh_name], ".bss") == 0 ||
+		strcmp(&strTab[shdr[i].sh_name], ".shstrtab") == 0)
 			continue;
 		printf("Contents of section %s:\n", &strTab[shdr[i].sh_name]);
 		for (k = shdr[i].sh_offset;
