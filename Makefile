@@ -22,13 +22,13 @@ NAMENM	=	my_nm
 NAMEOBJ	=	my_objdump
 
 
+all:	obj nm
+
 nm:	$(OBJNM)
 	gcc $(CFLAGS) $(OBJNM) -o $(NAMENM)
 
 obj:	$(OBJOBJ)
 	gcc $(CFLAGS) $(OBJOBJ) -o $(NAMEOBJ)
-
-all:	nm obj
 
 clean:
 	rm -f $(OBJNM)
