@@ -7,6 +7,19 @@
 
 #include "objdump/objdump.h"
 
+int	print_archi(int nbr)
+{
+	switch (nbr) {
+		case ET_EXEC:
+			printf("EXEC_P, HAS_SYMS, D_PAGED\n");
+			return (112);
+		case ET_DYN:
+			printf("HAS_SYMS, DYNAMIC, D_PAGED\n");
+			return (150);
+	}
+	return (-1);
+}
+
 void	print_header32(void *file, char *filename)
 {
 	Elf32_Ehdr *elf;
@@ -16,8 +29,10 @@ void	print_header32(void *file, char *filename)
 	elf = (Elf32_Ehdr *) file;
 	shdr = (Elf32_Shdr *) (file + elf->e_shoff);
 	strTab = (char *)(file + shdr[elf->e_shstrndx].sh_offset);
+	printf("----%d----\n", elf->e_type);
 	printf("\n%s:     file format %s\n", filename, "elf32-i386");
-	printf("architecture: %s, flags 0x%08x:\n", "i386", 0);
+	printf("architecture: %s, flags 0x%08d:\n", "i386",
+		print_archi(elf->e_type));
 	printf("start address 0x%08x\n\n", elf->e_entry);
 	print_section32(shdr, elf, file, strTab);
 }
@@ -31,8 +46,10 @@ void	print_header64(void *file, char *filename)
 	elf = (Elf64_Ehdr *) file;
 	shdr = (Elf64_Shdr *) (file + elf->e_shoff);
 	strTab = (char *)(file + shdr[elf->e_shstrndx].sh_offset);
+	printf("----%d----\n", elf->e_type);
 	printf("\n%s:     file format %s\n", filename, "elf64-x86-64");
-	printf("architecture: %s, flags 0x%08x:\n", "i386:x86-64", 0);
+	printf("architecture: %s, flags 0x%08d:\n", "i386:x86-64",
+		print_archi(elf->e_type));
 	printf("start address 0x%016lx\n\n", elf->e_entry);
 	print_section64(shdr, elf, file, strTab);
 }

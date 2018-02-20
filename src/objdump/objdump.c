@@ -31,28 +31,6 @@ void		print_all(uint8_t *data, int size)
 	printf("\n");
 }
 
-void    print_section(Elf64_Shdr *shdr, char *strTab, Elf64_Ehdr *elf,
-		uint8_t *data)
-{
-	int   i;
-	size_t k;
-
-	for (i = 1; i < elf->e_shnum &&
-		(strcmp(&strTab[shdr[i].sh_name], ".symtab") != 0); i++) {
-		if (strcmp(&strTab[shdr[i].sh_name], ".bss") == 0 ||
-		strcmp(&strTab[shdr[i].sh_name], ".shstrtab") == 0)
-			continue;
-		printf("Contents of section %s:\n", &strTab[shdr[i].sh_name]);
-		for (k = shdr[i].sh_offset;
-			k < shdr[i].sh_offset + shdr[i].sh_size; k += 16) {
-			printf(" %04x ",
-			(int)(shdr[i].sh_addr + k - shdr[i].sh_offset));
-			print_all(data + k,
-				shdr[i].sh_offset + shdr[i].sh_size - k);
-		}
-	}
-}
-
 void *checkfile(char *filename)
 {
 	int fd;
