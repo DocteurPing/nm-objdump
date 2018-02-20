@@ -8,14 +8,16 @@
 SRCNM	=	src/nm/main.c	\
 		src/nm/nm.c
 
-SRCOBJ	=	src/objdump/main.c	\
-		src/objdump/objdump.c
+SRCOBJ	=	src/objdump/main.c		\
+		src/objdump/objdump.c		\
+		src/objdump/print_section.c	\
+		src/objdump/print_header.c
 
 OBJNM	=	$(SRCNM:.c=.o)
 
 OBJOBJ	=	$(SRCOBJ:.c=.o)
 
-CFLAGS  =	-W -Wall -Wextra -Iinclude
+CFLAGS  =	-W -Wall -Wextra -Iinclude -g3
 
 NAMENM	=	my_nm
 

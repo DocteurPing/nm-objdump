@@ -20,5 +20,12 @@
 # include <ctype.h>
 
 int	my_objdump(char *);
+void    print_section32(Elf32_Shdr *, Elf32_Ehdr *,
+		uint8_t *, char *);
+void    print_section64(Elf64_Shdr *, Elf64_Ehdr *,
+		uint8_t *, char *);
+void	print_all(uint8_t *, int);
+void	print_header32(void *, char *);
+void	print_header64(void *, char *);
 
 #endif

@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2018
-** nm
+** obj
 ** File description:
-** nm
+** obj
 */
 
 #include "objdump/objdump.h"
@@ -57,6 +57,7 @@ void *checkfile(char *filename)
 {
 	int fd;
 	void *file;
+	const unsigned char magic1[4] = {0x7f, 0x45, 0x4c, 0x46};
 
 	fd = open(filename, O_RDONLY);
 	if (fd == -1) {
@@ -67,25 +68,22 @@ void *checkfile(char *filename)
 	if (file == MAP_FAILED)
 		return (NULL);
 	close(fd);
+	if (memcmp(file, magic1, sizeof(magic1)) != 0)
+		return (NULL);
 	return (file);
 }
 
 int my_objdump(char *filename)
 {
-	void *file = checkfile(filename);
-	Elf64_Ehdr *elf;
-	Elf64_Shdr *shdr;
-	char *strtab;
+	uint8_t *file = checkfile(filename);
 
 	if (file == NULL)
 		return (84);
-	elf = (Elf64_Ehdr *) file;
-	shdr = (Elf64_Shdr *) (file + elf->e_shoff);
-	strtab = (char *)(file + shdr[elf->e_shstrndx].sh_offset);
-	printf("\n%s:     file format %s\n", filename, "elf64-x86-64");
-	printf("architecture: %s, flags 0x%08x:\n", "test",
-	elf->e_flags);
-	printf("start address 0x%016lx\n\n", elf->e_entry);
-	print_section(shdr, strtab, elf, file);
+	if (file[4] == 1)
+		print_header32(file, filename);
+	else if (file[4] == 2)
+		print_header64(file, filename);
+	else
+		printf("objdump: %s: File format not recognized", filename);
 	return (0);
 }

@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2018
-** nm
+** obj
 ** File description:
 ** main
 */
