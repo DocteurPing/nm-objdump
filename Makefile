@@ -24,7 +24,7 @@ NAMENM	=	my_nm
 NAMEOBJ	=	my_objdump
 
 
-all:	obj nm
+all:	objdump nm
 
 nm:	$(OBJNM)
 	gcc $(CFLAGS) $(OBJNM) -o $(NAMENM)
