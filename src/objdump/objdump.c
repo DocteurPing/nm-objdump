@@ -39,7 +39,7 @@ void *checkfile(char *filename)
 
 	fd = open(filename, O_RDONLY);
 	if (fd == -1) {
-		printf("nm: '%s': No such file\n", filename);
+		printf("objdump: '%s': No such file\n", filename);
 		return (NULL);
 	}
 	file = mmap(NULL, lseek(fd, 0, SEEK_END), PROT_READ, MAP_SHARED, fd, 0);
