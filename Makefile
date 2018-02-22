@@ -29,7 +29,7 @@ all:	obj nm
 nm:	$(OBJNM)
 	gcc $(CFLAGS) $(OBJNM) -o $(NAMENM)
 
-obj:	$(OBJOBJ)
+objdump:	$(OBJOBJ)
 	gcc $(CFLAGS) $(OBJOBJ) -o $(NAMEOBJ)
 
 clean:
