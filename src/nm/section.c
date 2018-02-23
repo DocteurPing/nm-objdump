@@ -7,7 +7,7 @@
 
 #include "nm/nm.h"
 
-void section64(void *file, char *filename)
+void section64(void *file)
 {
 	Elf64_Ehdr	*elf;
 	Elf64_Shdr	*shdr;
@@ -21,12 +21,12 @@ void section64(void *file, char *filename)
 	strTab = (char *)(file + shdr[elf->e_shstrndx].sh_offset);
 	symtab = find_sym_tab64(shdr, elf, strTab, file);
 	nametab = find_name_tab64(shdr, elf, strTab, file);
-	/* symboltab = fill_symbol_tab64();
-	symboltab = sort_symbol_tab64();
+	symboltab = fill_symbol_tab64(symtab, nametab, shdr);
+	/* symboltab = sort_symbol_tab64();
 	print_all(); */
 }
 
-void section32(void *file, char *filename)
+void section32(void *file)
 {
 	Elf32_Ehdr	*elf;
 	Elf32_Shdr	*shdr;

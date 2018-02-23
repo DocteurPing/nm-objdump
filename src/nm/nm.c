@@ -34,9 +34,9 @@ int my_nm(char *filename)
 	if (file == NULL)
 		return (84);
 	if (file[4] == 1)
-		section32(file, filename);
+		section32(file);
 	else if (file[4] == 2)
-		section64(file, filename);
+		section64(file);
 	else
 		printf("nm: %s: File format not recognized", filename);
 	return (0);

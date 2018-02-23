@@ -5,11 +5,13 @@
 ## makefile
 ##
 
-SRCNM	=	src/nm/main.c		\
-		src/nm/nm.c		\
-		src/nm/section.c	\
-		src/nm/find_sym_tab.c	\
-		src/nm/find_name_tab.c
+SRCNM	=	src/nm/main.c			\
+		src/nm/nm.c			\
+		src/nm/section.c		\
+		src/nm/find_sym_tab.c		\
+		src/nm/find_name_tab.c		\
+		src/nm/fill_symbol_tab.c	\
+		src/nm/find_type.c
 
 SRCOBJ	=	src/objdump/main.c		\
 		src/objdump/objdump.c		\
