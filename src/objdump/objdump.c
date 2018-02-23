@@ -46,8 +46,10 @@ void *checkfile(char *filename)
 	if (file == MAP_FAILED)
 		return (NULL);
 	close(fd);
-	if (memcmp(file, magic1, sizeof(magic1)) != 0)
+	if (memcmp(file, magic1, sizeof(magic1)) != 0) {
+		printf("objdump: %s: File format not recognized\n", filename);
 		return (NULL);
+	}
 	return (file);
 }
 
