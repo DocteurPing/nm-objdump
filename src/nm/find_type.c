@@ -30,7 +30,6 @@ char	check_other_flags64(Elf64_Sym sym, Elf64_Shdr *shdr)
 
 char	find_type64(Elf64_Sym sym, Elf64_Shdr *shdr, char *name)
 {
-	return ((ELF64_ST_BIND(sym.st_info) == STB_GNU_UNIQUE) ? 'u' : 0);
 	if (strncmp("wm4.", name, 4) == 0)
 		return ('n');
 	if (sym.st_shndx == SHN_UNDEF)
@@ -44,6 +43,8 @@ char	find_type64(Elf64_Sym sym, Elf64_Shdr *shdr, char *name)
 			return (sym.st_shndx == SHN_UNDEF ? 'v' : 'V');
 		return (sym.st_shndx == SHN_UNDEF ? 'w' : 'W');
 	}
+	if (ELF64_ST_BIND(sym.st_info) == STB_GNU_UNIQUE)
+		return ('u');
 	return (check_other_flags64(sym, shdr));
 	
 }

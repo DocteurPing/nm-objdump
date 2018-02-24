@@ -12,7 +12,7 @@ int	main(int argc, char **argv) {
 
 	if (argc <= 1)
 		return (my_nm("a.out", argv[0]));
-	for (i = 0; i < argc; i++) {
+	for (i = 1; i < argc; i++) {
 		my_nm(argv[i], argv[0]);
 	}
 	return (0);

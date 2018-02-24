@@ -9,7 +9,7 @@
 			"name": "(gdb) Launch",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "${workspaceFolder}/my_objdump",
+			"program": "${workspaceFolder}/my_nm",
 			"args": ["my_nm"],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",

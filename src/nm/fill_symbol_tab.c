@@ -23,6 +23,7 @@ symbol	*fill_symbol_tab64(sym_tab64 symtab, char *nametab, Elf64_Shdr *shdr)
 			tab[j].flag = find_type64(symtab.sym[i], shdr,
 				tab[j].name);
 			tab[j].is_the_last = FALSE;
+			j ++;
 		}
 	}
 	tab[j].is_the_last = TRUE;
