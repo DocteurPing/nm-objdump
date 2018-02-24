@@ -10,6 +10,9 @@
 int	main(int argc, char **argv) {
 	int	i;
 
+	setlocale(LC_MESSAGES, "");
+	setlocale(LC_CTYPE, "");
+	setlocale(LC_COLLATE, "");
 	if (argc <= 1)
 		return (my_nm("a.out", argv[0]));
 	for (i = 1; i < argc; i++) {

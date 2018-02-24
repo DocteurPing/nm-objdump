@@ -12,7 +12,8 @@ SRCNM	=	src/nm/main.c			\
 		src/nm/find_name_tab.c		\
 		src/nm/fill_symbol_tab.c	\
 		src/nm/find_type.c		\
-		src/nm/print_all.c
+		src/nm/print_all.c		\
+		src/nm/sort_symbol_tab.c
 
 SRCOBJ	=	src/objdump/main.c		\
 		src/objdump/objdump.c		\

@@ -18,6 +18,7 @@
 # include <elf.h>
 # include <string.h>
 # include <stdlib.h>
+# include <locale.h>
 
 typedef enum
 {
@@ -61,5 +62,6 @@ char	find_type32(Elf32_Sym sym, Elf32_Shdr *shdr, char *name);
 symbol	*fill_symbol_tab64(sym_tab64 symtab, char *nametab, Elf64_Shdr *shdr);
 symbol	*fill_symbol_tab32(sym_tab32 symtab, char *nametab, Elf32_Shdr *shdr);
 void	print_all(symbol *tab);
+void sort_symbol_tab(symbol *tab);
 
 #endif

@@ -22,7 +22,7 @@ void section64(void *file)
 	symtab = find_sym_tab64(shdr, elf, strTab, file);
 	nametab = find_name_tab64(shdr, elf, strTab, file);
 	symboltab = fill_symbol_tab64(symtab, nametab, shdr);
-	/* symboltab = sort_symbol_tab64(); */
+	sort_symbol_tab(symboltab);
 	print_all(symboltab);
 }
 
@@ -41,6 +41,6 @@ void section32(void *file)
 	symtab = find_sym_tab32(shdr, elf, strTab, file);
 	nametab = find_name_tab32(shdr, elf, strTab, file);
 	symboltab = fill_symbol_tab32(symtab, nametab, shdr);
-	/* symboltab = sort_symbol_tab32(); */
+	sort_symbol_tab(symboltab);
 	print_all(symboltab);
 }
