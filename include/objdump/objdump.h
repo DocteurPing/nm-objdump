@@ -19,7 +19,7 @@
 # include <string.h>
 # include <ctype.h>
 
-int	my_objdump(char *);
+int	my_objdump(char *, char *);
 void    print_section32(Elf32_Shdr *, Elf32_Ehdr *,
 		uint8_t *, char *);
 void    print_section64(Elf64_Shdr *, Elf64_Ehdr *,

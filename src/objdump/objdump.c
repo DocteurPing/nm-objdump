@@ -31,7 +31,7 @@ void		print_all(uint8_t *data, int size)
 	printf("\n");
 }
 
-void *checkfile(char *filename)
+void *checkfile(char *filename, char *argv0)
 {
 	int fd;
 	void *file;
@@ -39,7 +39,7 @@ void *checkfile(char *filename)
 
 	fd = open(filename, O_RDONLY);
 	if (fd == -1) {
-		printf("objdump: '%s': No such file\n", filename);
+		printf("%s: '%s': No such file\n", argv0, filename);
 		return (NULL);
 	}
 	file = mmap(NULL, lseek(fd, 0, SEEK_END), PROT_READ, MAP_SHARED, fd, 0);
@@ -47,15 +47,15 @@ void *checkfile(char *filename)
 		return (NULL);
 	close(fd);
 	if (memcmp(file, magic1, sizeof(magic1)) != 0) {
-		printf("objdump: %s: File format not recognized\n", filename);
+		printf("%s: %s: File format not recognized\n", argv0, filename);
 		return (NULL);
 	}
 	return (file);
 }
 
-int my_objdump(char *filename)
+int my_objdump(char *filename, char *argv0)
 {
-	uint8_t *file = checkfile(filename);
+	uint8_t *file = checkfile(filename, argv0);
 
 	if (file == NULL)
 		return (84);
@@ -64,6 +64,6 @@ int my_objdump(char *filename)
 	else if (file[4] == 2)
 		print_header64(file, filename);
 	else
-		printf("objdump: %s: File format not recognized", filename);
+		printf("%s: %s: File format not recognized\n", argv0, filename);
 	return (0);
 }

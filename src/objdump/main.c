@@ -11,9 +11,9 @@ int	main(int argc, char **argv) {
 	int	i;
 
 	if (argc <= 1)
-		return (my_objdump("a.out"));
+		return (my_objdump("a.out", argv[0]));
 	for (i = 1; i < argc; i++) {
-		my_objdump(argv[i]);
+		my_objdump(argv[i], argv[0]);
 	}
 	return (0);
 }
