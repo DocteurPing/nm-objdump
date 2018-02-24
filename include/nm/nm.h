@@ -57,7 +57,9 @@ char	*find_name_tab64(Elf64_Shdr *shdr, Elf64_Ehdr *elf, char *strTab,
 char	*find_name_tab32(Elf32_Shdr *shdr, Elf32_Ehdr *elf, char *strTab,
 			uint8_t *data);
 char	find_type64(Elf64_Sym sym, Elf64_Shdr *shdr, char *name);
+char	find_type32(Elf32_Sym sym, Elf32_Shdr *shdr, char *name);
 symbol	*fill_symbol_tab64(sym_tab64 symtab, char *nametab, Elf64_Shdr *shdr);
+symbol	*fill_symbol_tab32(sym_tab32 symtab, char *nametab, Elf32_Shdr *shdr);
 void	print_all(symbol *tab);
 
 #endif

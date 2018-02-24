@@ -40,7 +40,7 @@ void section32(void *file)
 	strTab = (char *)(file + shdr[elf->e_shstrndx].sh_offset);
 	symtab = find_sym_tab32(shdr, elf, strTab, file);
 	nametab = find_name_tab32(shdr, elf, strTab, file);
-	/* symboltab = fill_symbol_tab32();
-	symboltab = sort_symbol_tab32();
-	print_all(); */
+	symboltab = fill_symbol_tab32(symtab, nametab, shdr);
+	/* symboltab = sort_symbol_tab32(); */
+	print_all(symboltab);
 }

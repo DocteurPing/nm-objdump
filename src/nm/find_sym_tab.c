@@ -17,7 +17,8 @@ sym_tab64 find_sym_tab64(Elf64_Shdr *shdr, Elf64_Ehdr *elf, char *strTab,
 		if (strcmp(&strTab[shdr[i].sh_name], ".symtab") == 0) {
 			sym_tab.sym = (Elf64_Sym *)
 				(data + (shdr + i)->sh_offset);
-			sym_tab.size = (int)(shdr + i)->sh_size / sizeof(Elf64_Sym);
+			sym_tab.size = (int)(shdr + i)->sh_size /
+				sizeof(Elf64_Sym);
 			break;
 		}
 	}
@@ -34,7 +35,8 @@ sym_tab32 find_sym_tab32(Elf32_Shdr *shdr, Elf32_Ehdr *elf, char *strTab,
 		if (strcmp(&strTab[shdr[i].sh_name], ".symtab") == 0) {
 			sym_tab.sym = (Elf32_Sym *)
 				(data + (shdr + i)->sh_offset);
-			sym_tab.size = (int)(shdr + i)->sh_size / sizeof(Elf64_Sym);
+			sym_tab.size = (int)(shdr + i)->sh_size /
+				sizeof(Elf64_Sym);
 			break;
 		}
 	}
