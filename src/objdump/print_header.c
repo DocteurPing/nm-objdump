@@ -10,6 +10,8 @@
 int	get_archi(int nbr)
 {
 	switch (nbr) {
+		case ET_REL:
+			return (11);
 		case ET_EXEC:
 			return (112);
 		case ET_DYN:
@@ -21,6 +23,9 @@ int	get_archi(int nbr)
 void	print_archi(int nbr)
 {
 	switch (nbr) {
+		case ET_REL:
+			printf("HAS_RELOC, HAS_SYMS\n");
+			break;
 		case ET_EXEC:
 			printf("EXEC_P, HAS_SYMS, D_PAGED\n");
 			break;
